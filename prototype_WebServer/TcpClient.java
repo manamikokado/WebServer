@@ -6,7 +6,7 @@ import java.net.Socket;
 
 public class TcpClient {
     public static void main(String[] args) throws Exception {
-        try (Socket socket = new Socket("localhost", 8001);
+        try (Socket socket = new Socket("localhost", 80);
                 FileInputStream fis = new FileInputStream("client_send.txt");
                 FileOutputStream fos = new FileOutputStream("client_recv.txt")) {
             int ch;
@@ -16,7 +16,7 @@ public class TcpClient {
                 output.write(ch);
             }
             // 終了を示すため、ゼロを送信
-            output.write(0);
+            // output.write(0);
             // サーバからの返信をclient_recv.txtに出力
             InputStream input = socket.getInputStream();
             while((ch = input.read()) != -1) {
